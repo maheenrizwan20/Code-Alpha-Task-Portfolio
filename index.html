@@ -25,10 +25,193 @@
     line-height: 1.6;
     scroll-behavior: smooth;
   }
-  
-  /* ... (keep all your existing CSS the same until .skill-bar) ... */
+  header {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+    top: 0;
+    left: 0;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  header.scrolled {
+    background-color: rgba(30, 30, 30, 0.98);
+    padding: 0.7rem 2rem;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  nav a:hover::after,
+  nav a.active::after {
+    width: 100%;
+  }
+  nav a:hover,
+  nav a.active {
+    color: var(--primary-color);
+  }
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  main {
+    max-width: 1100px;
+    margin: 100px auto 50px;
+    padding: 0 20px;
+  }
+  section {
+    padding: 3rem 0;
+    border-bottom: 1px solid #333;
+    scroll-margin-top: 80px;
+  }
+  section:last-child {
+    border-bottom: none;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  h3 {
+    margin-top: 0;
+  }
+  .contact-info p, .contact-info a {
+    margin: 0.2rem 0;
+    color: var(--text-color);
+    font-weight: 500;
+    word-break: break-word;
+  }
+  .contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .contact-info a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
 
-  /* Modified skill bar styles */
+  /* Hero Section */
+  #hero {
+    text-align: center;
+    padding: 5rem 0 2rem;
+    margin-top: 2rem;
+  }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+  }
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background-color: #0b8c4d;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(146, 85, 85, 0.2);
+  }
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+  }
+  .btn-secondary:hover {
+    background-color: rgba(210, 177, 128, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(209, 130, 130, 0.2);
+  }
+
+  /* Skills Section */
+  .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(129, 64, 64, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .skill-group:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  .skill-group h4 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
   .skill-bar {
     background: #733636;
     border-radius: 10px;
@@ -36,15 +219,14 @@
     margin: 0.5rem 0 1rem;
     overflow: hidden;
     position: relative;
-    width: 100%;
   }
   .skill-bar-fill {
     height: 100%;
-    width: 0; /* Start at 0 */
+    width: 0;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transition: width 1.5s ease-in-out;
     border-radius: 10px;
     position: relative;
-    transition: width 1.5s ease-in-out; /* Smooth transition */
   }
   .skill-bar-fill::after {
     content: attr(data-width);
@@ -53,157 +235,705 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 10px;
-    color: white;
+    color: #743636;
     font-weight: bold;
   }
+  .skills-list ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0;
+  }
+  .skills-list li {
+    margin-bottom: 0.3rem;
+  }
 
-  /* ... (keep all remaining existing CSS the same) ... */
+  /* Projects Section */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem 1.2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover::before, 
+  .project-card:focus::before {
+    transform: scaleX(1);
+  }
+  .project-card:hover, 
+  .project-card:focus {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(15, 157, 88, 0.3);
+    outline: none;
+  }
+  .project-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-color);
+  }
+  .project-description {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+  }
+  .project-tools {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .project-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  .project-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+
+  /* Contact Section */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .contact-form {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(15, 157, 88, 0.2);
+  }
+  textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .contact-icon {
+    background-color: rgba(15, 157, 88, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--primary-color);
+  }
+  .contact-text {
+    flex: 1;
+  }
+  .contact-text a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .contact-text a:hover {
+    color: var(--primary-color);
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .back-to-top:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: var(--card-bg);
+    margin-top: 50px;
+    position: relative;
+  }
+  .footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .social-link:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+  }
+  .copyright {
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  /* Accessibility Focus */
+  a:focus,
+  button:focus,
+  .project-card:focus,
+  .form-control:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem;
+    }
+    header.scrolled {
+      padding: 0.7rem 1rem;
+    }
+    nav {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: rgba(30, 30, 30, 0.95);
+      padding: 1rem;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      transform: translateY(-150%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+    nav.open {
+      transform: translateY(0);
+    }
+    nav a {
+      display: block;
+      margin: 1rem 0;
+      padding: 0.5rem 0;
+      text-align: center;
+    }
+    .hamburger {
+      display: block;
+      z-index: 1000;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .cta-buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+    .skills-list {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- Your existing HTML remains exactly the same until the script section -->
+<header id="header">
+  <h1>Maheen Rizwan</h1>
+  <button class="hamburger" aria-label="Toggle navigation menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav aria-label="Primary navigation">
+    <a href="#hero" class="nav-link active">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="hero" class="fade-in">
+    <div class="hero-content">
+      <h2 class="hero-title">Maheen Rizwan</h2>
+      <p class="hero-subtitle">Software Developer & Data Scientist</p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <p>Hello! I'm Maheen Rizwan, a passionate Software Developer and AI developer based in Jhang, Punjab, Pakistan. I have experience with multiple programming languages and frameworks, and I enjoy building innovative applications and data-driven solutions.</p>
+    <p>Recently, I have been working on Flutter app development with my project <strong>Restaurant Dine Ease</strong>, information available on my LinkedIn profile. I'm constantly learning and expanding my skill set to stay current with the latest technologies in software development and data science.</p>
+    <p>My goal is to create impactful solutions that solve real-world problems and enhance user experiences. I'm passionate about combining technical expertise with creative problem-solving to deliver high-quality software products.</p>
+  </section>
+
+  <section id="skills" class="fade-in">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill-group">
+        <h4>Programming Languages</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div>
+        <ul>
+          <li>C, C++, C#, Python</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Web Technologies</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div>
+        <ul>
+          <li>HTML, CSS, Flask, JavaScript</li>
+        </ul>
+      </div>
+       <div class="skill-group">
+        <h4>UI/UX Design</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div>
+        <ul>
+          <li>,Figma,Canva,Adobe Illustrator,Sketch</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Database Systems</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div>
+        <ul>
+          <li>SQL, MySQL</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Data Science</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div>
+        <ul>
+          <li>Jupyter Notebook, Google Colab, DataFrames, OpenCV, YOLO, TensorFlow</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps & Version Control</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div>
+        <ul>
+          <li>Docker,Git, GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Mathematical & Statistical Tools</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="70%"></div></div>
+        <ul>
+          <li>Regression, Gradient Descent</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Research Skills</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div>
+        <ul>
+          <li>Data Analysis, Literature Review, Technical Writing, Machine Learning Models</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Mobile Development</h4>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="65%"></div></div>
+        <ul>
+          <li>Flutter, Dart</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <article class="project-card" tabindex="0" aria-label="NotePad with Voice Recognition project">
+        <h3 class="project-title">NotePad with Voice Recognition</h3>
+        <p class="project-description">A notepad application enabling text creation and editing through voice commands and keyboard input. The app features real-time voice-to-text conversion and customizable voice commands.</p>
+        <p class="project-tools">Tools: VS Studio, C++, C# for interface, Project Management</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Apr 2022 – June 2022</small></p>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-label="Library Management System project">
+        <h3 class="project-title">Library Management System</h3>
+        <p class="project-description">A system to manage library operations, including book inventory, user records, and issue/return tracking. Features include search functionality, due date reminders, and fine calculation.</p>
+        <p class="project-tools">Tools: VS Studio, C, C++, Databases, Project Management</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Oct 2023 – Dec 2023</small></p>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-label="Hotel Management System project">
+        <h3 class="project-title">Hotel Management System</h3>
+        <p class="project-description">A system to manage hotel operations, including customer care, customer records, inventory for room service and payment tracking. Includes booking management and reporting features.</p>
+        <p class="project-tools">Tools: VS Studio, C, C++, Databases, Project Management</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Mar 2024 – Apr 2024</small></p>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-label="Multi flow Traffic generator project">
+        <h3 class="project-title">Multi flow Traffic Generator</h3>
+        <p class="project-description">A real-time application to analyze network performance by simulating single and multi-flow data transfers. Helps identify bottlenecks and optimize network configurations.</p>
+        <p class="project-tools">Tools: VS Code, Data Analysis, Databases, Python, Pandas, Project Management</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Oct 2024 – Nov 2024</small></p>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-label="Lane lens project">
+        <h3 class="project-title">Lane Lens</h3>
+        <p class="project-description">AI-based traffic analyzer used to classify and detect vehicles. The system can identify vehicle types, count traffic volume, and estimate traffic density in real-time.</p>
+        <p class="project-tools">Tools: VS Code, Project Management, Data Analysis, YOLO, TensorFlow, OpenCV</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Oct 2024 – Dec 2024</small></p>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-label="Restaurant Dine Ease application">
+        <h3 class="project-title">Restaurant Dine Ease (Flutter App)</h3>
+        <p class="project-description">A Flutter app project for restaurant management and customer ease. Features include menu browsing, table reservations, order tracking, and payment processing.</p>
+        <p class="project-tools">Tools: Flutter, Dart, Firebase, Project Management</p>
+        <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="project-link">View on LinkedIn →</a>
+        <p><small>Feb 2025 – May 2025</small></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="fade-in">
+    <h2>Contact</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <form id="contactForm" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <p>Phone</p>
+            <a href="tel:+923452607784">+92 3452607784</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <p>Email</p>
+            <a href="mailto:maheenrizwan749@gmail.com">maheenrizwan749@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">👩💼</div>
+          <div class="contact-text">
+            <p>LinkedIn</p>
+            <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer">linkedin.com/in/maheen-rizwan22/</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <p>Location</p>
+            <p>Jhang, Punjab - 35200, Pakistan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
+<footer>
+  <div class="footer-content">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/maheen-rizwan22/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+        in
+      </a>
+      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+        GH
+      </a>
+      <a href="#" class="social-link" aria-label="Twitter">
+        X
+      </a>
+    </div>
+    <p class="copyright">&copy; 2024 Maheen Rizwan. All rights reserved.</p>
+  </div>
+</footer>
 
 <script>
-  // Improved version with debug checks
-  document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-    
-    if (hamburger && nav) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        nav.classList.toggle('open');
-      });
-
-      document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('active');
-          nav.classList.remove('open');
-        });
-      });
-    }
-
-    // Header scroll effect
-    const header = document.getElementById('header');
-    if (header) {
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-      });
-    }
-
-    // Active nav link
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('nav a');
-    
-    function changeActiveLink() {
-      let index = 0;
-      let minDistance = Infinity;
-      
-      sections.forEach((section, i) => {
-        const sectionTop = section.offsetTop - 100;
-        const scrollPosition = window.scrollY;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + section.offsetHeight) {
-          index = i;
-          return;
-        }
-        
-        const distance = Math.abs(scrollPosition - sectionTop);
-        if (distance < minDistance) {
-          minDistance = distance;
-          index = i;
-        }
-      });
-      
-      navLinks.forEach(link => link.classList.remove('active'));
-      navLinks[index]?.classList.add('active');
-    }
-
-    // Skill bar animation - MODIFIED VERSION
-    const skillFills = document.querySelectorAll(".skill-bar-fill");
-    
-    function animateSkills() {
-      const triggerBottom = window.innerHeight * 0.8; // More sensitive trigger
-      
-      skillFills.forEach(skill => {
-        const skillTop = skill.getBoundingClientRect().top;
-        
-        if (skillTop < triggerBottom) {
-          const widthValue = skill.getAttribute('data-width');
-          skill.style.width = widthValue;
-        }
-      });
-    }
-
-    // Initialize animations
-    function initAnimations() {
-      // Run once on load
-      animateSkills();
-      changeActiveLink();
-      
-      // Set up event listeners
-      window.addEventListener('scroll', () => {
-        changeActiveLink();
-        animateSkills();
-      });
-
-      // Debug check
-      console.log('Initialized skill bars:', skillFills.length);
-      skillFills.forEach(skill => {
-        console.log(`Skill: ${skill.parentNode.querySelector('h4').textContent.trim()}, Width: ${skill.getAttribute('data-width')}`);
-      });
-    }
-
-    // Back to top button
-    const backToTopButton = document.getElementById('backToTop');
-    if (backToTopButton) {
-      window.addEventListener('scroll', () => {
-        backToTopButton.classList.toggle('visible', window.scrollY > 300);
-      });
-      
-      backToTopButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
-
-    // Fade in animation
-    const fadeElements = document.querySelectorAll('.fade-in');
-    function checkFade() {
-      const triggerBottom = window.innerHeight * 0.8;
-      fadeElements.forEach(el => {
-        const elTop = el.getBoundingClientRect().top;
-        if (elTop < triggerBottom) {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }
-      });
-    }
-
-    // Form handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (validateForm()) {
-          alert('Thank you for your message! I will get back to you soon.');
-          contactForm.reset();
-        }
-      });
-    }
-
-    function validateForm() {
-      // Your existing validation logic
-      return true;
-    }
-
-    // Start everything
-    initAnimations();
-    checkFade();
-    window.addEventListener('scroll', checkFade);
+  // Mobile menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('open');
   });
-</script>
-</body>
-</html>
+
+  // Close mobile menu when clicking on a nav link
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('open');
+    });
+  });
+
+  // Header scroll effect
+  const header = document.getElementById('header');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Smooth active nav link update on scroll
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  function changeActiveLink() {
+    let index = 0;
+    let minDistance = Infinity;
+    
+    sections.forEach((section, i) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      const scrollPosition = window.scrollY;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        index = i;
+        return;
+      }
+      
+      const distance = Math.abs(scrollPosition - sectionTop);
+      if (distance < minDistance) {
+        minDistance = distance;
+        index = i;
+      }
+    });
+    
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
+  }
+
+  changeActiveLink();
+  window.addEventListener('scroll', changeActiveLink);
+
+  // Skill bar animation on scroll
+  const skillFills = document.querySelectorAll(".skill-bar-fill");
+
+  function animateSkills() {
+    const triggerBottom = window.innerHeight * 0.85;
+    skillFills.forEach(skill => {
+      const skillTop = skill.getBoundingClientRect().top;
+      if (skillTop < triggerBottom) {
+        skill.style.width = skill.getAttribute('data-width');
+      }
+    });
+  }
+
+  animateSkills();
+  window.addEventListener('scroll', animateSkills);
+
+  // Back to top button
+  const backToTopButton = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  });
+  
+  backToTopButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Fade in animation for sections
+  const fadeElements = document.querySelectorAll('.fade-in');
+  
+  function checkFade() {
+    const triggerBottom = window.innerHeight * 0.8;
+    
+    fadeElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      if (elementTop < triggerBottom) {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }
+    });
+  }
+  
+  checkFade();
+  window.addEventListener('scroll', checkFade);
+
+  // Form submission handling
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Basic validation
+      if (!name || !email || !subject || !message) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      
+      // Here you would normally send the form data to a server
+      // Since this is a demo, we'll just show a success message
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+    });
+  }
+

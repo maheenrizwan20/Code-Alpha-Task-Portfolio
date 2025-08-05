@@ -2,7 +2,7 @@
 A personal portfolio website to showcase your projects, skills, achievements, and contact information in a sleek and modern layout.
 
 🔍 Overview
-This project represents your online identity — a fully responsive website that introduces you, highlights your work, and provides ways to connect with you.
+This project represents your online identity a fully responsive website that introduces you, highlights your work, and provides ways to connect with you.
 
 ✨ Features
 Home Section – Brief introduction with name and role.
